@@ -79,7 +79,7 @@
         <h1 id="因果推断-causal-RL-复习"><a href="#因果推断-causal-RL-复习" class="headerlink" title="因果推断/causal RL 复习"></a>因果推断/causal RL 复习</h1><p>基本思想是把环境建模成概率图问题，然后把online/off-policy等情况用概率图结合do operator进行解释，以实现better performance/robust/transfer等</p>
 <p>基本上是bareinboim提出来的一些理论，证了包括迁移或者模仿学习在内的很多东西，以及提出来一些特定的bandit algorithm、bandit bound和treatment bound；但实际没有看到在哪个比较公认的benchmark上有相关的工作。</p>
 <p><strong>个人想法</strong>：在环境里想用这种理论其实还是个model-based问题，目的是以trajectory还原环境本身的 概率图。（这样其实可能本质是一个causal discovery问题？总之目前并没有看到说怎么去建模model，然后去估计model指标的工作）</p>
-<h5 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h5><img src="C:\Users\yyyxxx23\AppData\Roaming\Typora\typora-user-images\image-20220122021953491.png" alt="image-20220122021953491" style="zoom:33%;" />
+<h5 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h5><img src="/images/image-20220122021953491.png" alt="image-20220122021953491" style="zoom:33%;" />
 
 
 
@@ -95,7 +95,7 @@
 <p>实际上反事实想算出来很难，只有一些特殊条件下才能比较方便的算，比如1.x是离散的甚至x的取值很有限；2.无隐变量/混杂；3.后门变量可被do运算 ，其他情况下似乎只能把上式x的取值范围遍历才能推反事实</p>
 <p>ps：目前为止看到的所谓counterfactual基本上也是挂着这个概念的data augmentation/套统计中doubly xx对应loss的方法，实际可用性存疑</p>
 </blockquote>
-<h5 id="咋用"><a href="#咋用" class="headerlink" title="咋用"></a>咋用</h5><img src="C:\Users\yyyxxx23\AppData\Roaming\Typora\typora-user-images\image-20220122022421059.png" alt="image-20220122022421059" style="zoom:50%;" />
+<h5 id="咋用"><a href="#咋用" class="headerlink" title="咋用"></a>咋用</h5><img src="/images/image-20220122022421059.png" alt="image-20220122022421059" style="zoom:50%;" />
 
 <p>1.online: agent学习的是自己的策略和环境的交互</p>
 <p>2.off-policy：同1.，但agent也可以使用其他agent的trajectory</p>
@@ -112,7 +112,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/23/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%ADcausal%20RL%20%E5%A4%8D%E4%B9%A0/" data-id="ckyr2bx820000tku0a2yhggdr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/01/23/%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%ADcausal%20RL%20%E5%A4%8D%E4%B9%A0/" data-id="ckyr2fe570001cgu0fj1540yl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/13/hello-world/" data-id="ckycus1pt0000u8u07erf1gp1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/01/13/hello-world/" data-id="ckyr2fe4v0000cgu07pvnh0hd" class="article-share-link">Share</a>
       
       
     </footer>
