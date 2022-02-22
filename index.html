@@ -70,6 +70,155 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-modular RL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/21/modular%20RL/" class="article-date">
+  <time datetime="2022-02-21T05:55:19.324Z" itemprop="datePublished">2022-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr />
+<h2 id="marptruethemedefault"><a class="markdownIt-Anchor" href="#marptruethemedefault"></a> marp:true<br />
+theme:default</h2>
+<h1 id="modular-rl"><a class="markdownIt-Anchor" href="#modular-rl"></a> Modular RL</h1>
+<hr />
+<h2 id="modular-rl-2"><a class="markdownIt-Anchor" href="#modular-rl-2"></a> Modular RL</h2>
+<ul>
+<li>One Policy to Control Them All</li>
+<li>transform2act</li>
+</ul>
+<hr />
+<h2 id="one-policy-to-control-them-all"><a class="markdownIt-Anchor" href="#one-policy-to-control-them-all"></a> One Policy to Control Them All</h2>
+<p>Motivation: use a module for controlling each limb of the agent.</p>
+<p><img src="images/1434_1.png" alt="width:800px" /></p>
+<p>Method: similar to GNN:</p>
+<ul>
+<li>use the same module for modelling the</li>
+<li>define a root joint of the agent</li>
+<li>define two kinds of message function(father -&gt;  leaves / leaves -&gt; father)</li>
+</ul>
+<hr />
+<h2 id="one-policy-to-control-them-all-2"><a class="markdownIt-Anchor" href="#one-policy-to-control-them-all-2"></a> One Policy to Control Them All</h2>
+<p>State and Actions:</p>
+<ul>
+<li>states of each limb contain global positions, positional  velocities, rotational velocities, 3D rotations, and range  of movement of the limb body</li>
+<li>each limb output its predicted torque values(except the root joint).</li>
+</ul>
+<p>Corollary:</p>
+<ol>
+<li>the selection of the root slightly influence the performance.</li>
+<li>bi-direction message passing works best in zero-shot experiments.</li>
+</ol>
+<hr />
+<h2 id="transform2act"><a class="markdownIt-Anchor" href="#transform2act"></a> transform2act</h2>
+<p>Motivation: use a pipeline to design and control the agent.<br />
+<img src="images/1437_2.png" alt="width:800px" /></p>
+<hr />
+<h2 id="transform2act-2"><a class="markdownIt-Anchor" href="#transform2act-2"></a> transform2act</h2>
+<h3 id="joint-specialized-mlp"><a class="markdownIt-Anchor" href="#joint-specialized-mlp"></a> JOINT-SPECIALIZED MLP</h3>
+<p>A joint-indexed weight memory for improve the per-joint specialization of GNN-based policies.</p>
+<p>indexed structure<br />
+<img src="images/1702_3.png" alt="width:400px" /></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/21/modular%20RL/" data-id="ckzxmgqf90001r4u04xse5ywi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-rethinking cwm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/12/rethinking%20cwm/" class="article-date">
+  <time datetime="2022-02-11T21:00:49.926Z" itemprop="datePublished">2022-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr />
+<h2 id="marptruethemedefault"><a class="markdownIt-Anchor" href="#marptruethemedefault"></a> marp:true<br />
+theme:default</h2>
+<h1 id="rethinking-causal-world-models"><a class="markdownIt-Anchor" href="#rethinking-causal-world-models"></a> Rethinking Causal World Models</h1>
+<hr />
+<p>Our motivation: embed physical laws to faciliate causal discovery in MBRL to obtain a SCM, and use this SCM as a better model.</p>
+<p>Recalling CWM: World Model style architecture, add doubly robust estimator for minimizing counterfactual risk.<br />
+<img src="images/image-20220124155302776.png" style="zoom:33%;" /></p>
+<pre><code>Q1: Is causal discovery avoidable?
+Q2: Why object-based?
+Q3: Why simple env?
+</code></pre>
+<hr />
+<p>Q1:<br />
+methods for causal discovery (NCM)</p>
+<p>NCM:<br />
+<img src="images/0858_1.png" style="zoom:33%;" /></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span>:exogenous variable</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span></span></span></span>: endogenous variable</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>: a set,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>f</mi><msub><mi>V</mi><mi>i</mi></msub></msub><mo separator="true">,</mo><msub><mi>V</mi><mi>i</mi></msub><mo>∈</mo><mi>V</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">F=\{ {f_{V_i}},V_i \in V \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mopen">{</span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.22222em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mclose">}</span></span></span></span>, each <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> is a NN</p>
+<p>conclusion: with obs data distribution and causal diagram, the NCM is ‘neural identifiable’, which means we can answer any interventional distribution on this NCM.</p>
+<hr />
+<p>NCM using GNN(GNN-NCM)</p>
+<p>Motivation: using GNN to learn a NCM so that we still have the aforementioned properties of NCM.</p>
+<p>Conflicts: GNN use a shared parameter network on each node as message function, while each node in NCM have its own parameterized network.</p>
+<p>Solution:</p>
+<ol>
+<li>Just assume nodes in GNN-NCM use shared parameter message function. This will make training difficult.(When using object-based methods, this may become easier)</li>
+<li>Break the assumption of shared parameter message function in GNN-each node have its own message function.</li>
+</ol>
+<hr />
+<p>Q2: why object-based?</p>
+<p>A: object-based representation makes GNN-SCM easier to learn-shared physical mechanisms among nodes(objects).</p>
+<p>objects with attributes helps embed the inductive bias of condition independence, which may help some causal discovery methods.(But may not work when env have single object or it is hard to divide objects from states.)</p>
+<p><strong>However, GNN-SCM is still unapplicable/in effective for embedding physical knowledge.</strong></p>
+<p><strong>information loss of meaning of variables from turning SCM and states to latent states</strong></p>
+<hr />
+<p><s>Possible solutions:</s></p>
+<p><s>1.基于physical laws构造一个以物理量为结点的DAG，将<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>t</mi><mi>t</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">attention(f(s,a))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>出的embedding,直接送到DAG里算，算出来的node representations拼起来当消息传递函数，拟合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">a_{t+1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span></s></p>
+<p><s>2.attributes和do-op都用latent variable 表示(结构上应该会变得很类似causal world model)</s></p>
+<p><s>3.对齐某个中间量，如同时用force和position对齐velocity</s></p>
+<hr />
+<p>Q3: why simple envs?</p>
+<p>restrictions of inadequate network architecture/ SCM learning methods did not learn the real mechanisms of the env in past works</p>
+<p>Alternative envs: CausalWorld, CoPhy,…</p>
+<hr />
+<p>Alternative envs: CoPhy</p>
+<p>几个任务: BallsCF, CollisionCF, BlocktowerCF，解决的问题是一致的：问<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><mi>i</mi><mi>t</mi><mi>i</mi><mi>o</mi><msub><mi>n</mi><mi>x</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">do(position_x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>后未来状态是什么</p>
+<p>应该是一个counterfactual的任务(policy来自<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">{</mo><msub><mi>X</mi><mrow><mi>t</mi><mi>r</mi><mi>a</mi><mi>i</mi><mi>n</mi></mrow></msub><mo separator="true">,</mo><msub><mi>Y</mi><mrow><mi>t</mi><mi>r</mi><mi>a</mi><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{ X_{train},Y_{train} \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>,query是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">{</mo><msub><mi>X</mi><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi></mrow></msub><mo separator="true">,</mo><msub><mi>Y</mi><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi></mrow></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{ X_{test},Y_{test} \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>)</p>
+<hr />
+<p>Alternative envs: CausalWorld</p>
+<p>机械臂环境，任务为push, pick, stack，将objects用机械臂放到指定位置</p>
+<p>侧重于causal discovery, 有一些unobservable variable可以被do-op，如object/background的颜色，object的大小等</p>
+<p>有两种state可选: pixels(pics) or structured states(physical variables)，pixel时每个obs给6张不同视角的图片（3个当前状态，3个期望状态）<br />
+<img src="images/0913_2.png" style="zoom:33%;" /></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/12/rethinking%20cwm/" data-id="ckzxmgqf30000r4u0g1ofbx0i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Causal on MBRL" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/01/24/Causal%20on%20MBRL/" class="article-date">
@@ -280,7 +429,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li></ul>
     </div>
   </div>
 
@@ -291,6 +440,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/02/21/modular%20RL/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/12/rethinking%20cwm/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2022/01/24/Causal%20on%20MBRL/">(no title)</a>
